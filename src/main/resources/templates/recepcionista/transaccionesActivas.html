@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Transacciones Activas</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Transacciones Activas</h1>
+		<div th:if="${mensaje}">
+			<div class="alert alert-info" th:text="${mensaje}"></div>
+		</div>
+		<table class="table table-bordered mt-4 text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>Codigo</th>
+					<th>Nombre del Cliente</th>
+					<th>Tipo de Servicio</th>
+					<th>Horario</th>
+					<th>Documento Adjunto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="transaccion : ${transacciones}">
+					<td th:text="${transaccion.id}"></td>
+					<td th:text="${transaccion.usuarioLogeado.nombre}"></td>
+					<td th:text="${transaccion.servicio.nombre}"></td>
+					<td th:text="${transaccion.horario}"></td>
+					<td th:text="${transaccion.nombreDocumento}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

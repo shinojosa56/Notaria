@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Abogado</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Abogado</h1>
+		<input type="hidden" th:field="*{usuarioId}" value="${usuarioId}">
+		<div class="list-group mt-4 text-center">
+			<a th:href="@{/abogado/abogadoPerfil(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Mi Perfil</a> <a
+				th:href="@{/abogado/abogadoCitasPendientes(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Citas Programadas</a>
+			<a th:href="@{/abogado/abogadoProgramarCita(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Programar una
+				Cita</a> 
+				<a th:href="@{/abogado/abogadoCitasHistorial(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Historial</a> 
+				<a
+				th:href="@{/home/ayuda}"
+				class="list-group-item list-group-item-action">Ayuda</a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

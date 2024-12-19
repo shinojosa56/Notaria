@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrap.com/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Admin</h1>
+		<input type="hidden" th:value="${usuarioId}" name="usuarioId">
+		<div class="list-group mt-4 text-center">
+			<a th:href="@{/admin/adminPerfil(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Mi perfil</a> <a
+				th:href="@{/admin/adminServicios(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Lista de
+				Servicios</a> <a th:href="@{/admin/adminCrearServicio}"
+				class="list-group-item list-group-item-action">Crear Servicio</a> <a
+				th:href="@{/admin/adminListaUsuarios(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Lista Usuarios</a> <a
+				th:href="@{/admin/adminListaTransacciones(usuarioId=${usuarioId})}"
+				class="list-group-item list-group-item-action">Lista
+				Transacciones</a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

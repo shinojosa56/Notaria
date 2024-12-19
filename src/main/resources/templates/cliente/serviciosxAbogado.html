@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Usuarios</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Lista de Usuarios</h1>
+		<input type="hidden" th:field="*{usuarioId}" th:value="${usuarioId}">
+		<input type="hidden" th:field="*{servicioId}" th:value="${servicioId}">
+		<input type="hidden" th:field="*{horario}" th:value="${horario}">
+		<table class="table table-bordered mt-4 text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>DNI</th>
+					<th>Dirección</th>
+					<th>Teléfono</th>
+					<th>Especialidad</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${listaUsuarios}">
+					<td th:text="${usuario.nombre}"></td>
+					<td th:text="${usuario.apellido}"></td>
+					<td th:text="${usuario.dni}"></td>
+					<td th:text="${usuario.direccion}"></td>
+					<td th:text="${usuario.telefono}"></td>
+					<td th:text="${usuario.especialidad}"></td>
+					<td><a
+						th:href="@{/cliente/comprarServicio/{servicioId}/{usuarioIdSeleccionado}/{usuarioLogeadoId}/{horario}(servicioId=${servicioId}, usuarioIdSeleccionado=${usuario.id}, usuarioLogeadoId=${usuarioId}, horario=${horario})}"
+						class="btn btn-primary">Seleccionar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

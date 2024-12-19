@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Servicios</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Lista de Servicios</h1>
+		<input type="hidden" th:field="*{usuarioId}" th:value="${usuarioId}">
+		<form th:action="@{/cliente/buscarServicios}" method="GET"
+			class="form-inline my-4 justify-content-center">
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="nombre" class="sr-only">Nombre</label> <input
+					type="text" class="form-control" id="nombre" name="nombre"
+					placeholder="Nombre del servicio">
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+		</form>
+		<div th:if="${mensaje != null}" class="alert alert-info"
+			th:text="${mensaje}"></div>
+		<table class="table table-bordered mt-4 text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Requisitos</th>
+					<th>Precio</th>
+					<th>Descuento</th>
+					<th>Especialidad</th>
+					<th>Horarios</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="servicio : ${listaServicios}">
+					<td th:text="${servicio.nombre}"></td>
+					<td th:text="${servicio.descripcion}"></td>
+					<td th:text="${servicio.requisitos}"></td>
+					<td th:text="${servicio.precio}"></td>
+					<td th:text="${servicio.descuento}"></td>
+					<td th:text="${servicio.especialidad}"></td>
+					<td><select class="form-control" id="horario" name="horario">
+							<option th:each="horario : ${servicio.horarios}"
+								th:value="${horario.valor}" th:text="${horario.valor}"></option>
+					</select></td>
+					<td>
+						<form th:action="@{/cliente/serviciosxAbogado}" method="GET">
+							<input type="hidden" name="usuarioId" th:value="${usuarioId}">
+							<input type="hidden" name="servicioId" th:value="${servicio.id}">
+							<input type="hidden" name="horario"
+								th:value="${servicio.horarios[0].valor}">
+							<button type="submit" class="btn btn-success">Solicitar</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

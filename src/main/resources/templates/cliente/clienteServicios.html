@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Transacciones del Usuario</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Transacciones del Usuario</h1>
+		<div th:if="${mensaje}">
+			<div class="alert alert-info" th:text="${mensaje}"></div>
+		</div>
+		<table class="table table-bordered mt-4 text-center">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID Transacción</th>
+					<th>Nombre del Servicio</th>
+					<th>Especialidad</th>
+					<th>Horario</th>
+					<th>Nombre del Documento</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="transaccion : ${transacciones}">
+					<td th:text="${transaccion.id}"></td>
+					<td th:text="${transaccion.servicio.nombre}"></td>
+					<td th:text="${transaccion.servicio.especialidad}"></td>
+					<td th:text="${transaccion.horario}"></td>
+					<td th:text="${transaccion.nombreDocumento}"></td>
+					<td>
+						<form th:action="@{/cliente/subirDocumento}" method="POST"
+							enctype="multipart/form-data">
+							<input type="hidden" name="transaccionId"
+								th:value="${transaccion.id}"> <input type="hidden"
+								name="usuarioLogeadoId" th:value="${usuarioLogeadoId}">
+							<input type="file" name="documento" accept="application/pdf">
+							<button type="submit" class="btn btn-primary btn-sm">Subir
+								Archivo</button>
+						</form>
+						<div th:if="${transaccion.documento != null}">
+							<a
+								th:href="@{/cliente/descargarDocumento/{transaccionId}(transaccionId=${transaccion.id})}"
+								class="btn btn-success btn-sm mt-2">Descargar Documento</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

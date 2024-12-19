@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Usuarios</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Lista de Usuarios</h1>
+		<form th:action="@{/admin/buscarUsuarios}" method="GET"
+			class="form-inline my-4 justify-content-center">
+			<input type="hidden" th:value="${usuarioId}" name="usuarioId">
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="nombre" class="sr-only">Nombre</label> <input
+					type="text" class="form-control" id="nombre" name="nombre"
+					placeholder="Nombre">
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+		</form>
+		<div th:if="${mensaje!=null}" class="alert alert-info"
+			th:text="${mensaje}"></div>
+		<table class="table table-bordered mt-4">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>DNI</th>
+					<th>Direccion</th>
+					<th>Telefono</th>
+					<th>Rol</th>
+					<th>Estado</th>
+					<th>Jornada</th>
+					<th>Usuario</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario : ${listaUsuarios}">
+					<td th:text="${usuario.nombre}"></td>
+					<td th:text="${usuario.apellido}"></td>
+					<td th:text="${usuario.dni}"></td>
+					<td th:text="${usuario.direccion}"></td>
+					<td th:text="${usuario.telefono}"></td>
+					<td th:text="${usuario.rol}"></td>
+					<td th:text="${usuario.estado}"></td>
+					<td th:text="${usuario.tipoJornada}"></td>
+					<td th:text="${usuario.usuario}"></td>
+					<td><a
+						th:href="@{/admin/editarUsuarios/{id}(id=${usuario.id}, usuarioId=${usuarioId})}"
+						class="btn btn-warning">Actualizar</a>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Agregar Horarios</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrap.com/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Agregar Horarios</h1>
+		<form th:action="@{/admin/guardarHorarios}" method="POST"
+			class="form-inline">
+			<input type="hidden" name="servicioId" th:value="${servicioId}">
+			<input type="hidden" name="usuarioId" th:value="${usuarioId}">
+			<div class="form-group mx-sm-3 mb-2">
+				<label for="horario" class="sr-only">Horario</label> <select
+					class="form-control" id="horario" name="horario">
+					<option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+					<option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+					<option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+					<option value="12:00 PM - 1:00 PM">12:00 PM - 1:00 PM</option>
+					<option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+					<option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+					<option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+					<option value="4:00 PM - 5:00 PM">4:00 PM - 5:00 PM</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary mb-2">Guardar</button>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

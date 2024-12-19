@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Pasarela de Pago</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Pasarela de Pago</h1>
+		<form th:action="@{/cliente/realizarPago}" method="POST"
+			class="form-horizontal">
+			<div class="form-group">
+				<label for="cardNumber">Número de Tarjeta:</label> <input
+					type="text" class="form-control" id="cardNumber" name="cardNumber"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="expiryDate">Fecha de Expiración:</label> <input
+					type="text" class="form-control" id="expiryDate" name="expiryDate"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="cvv">CVV:</label> <input type="text"
+					class="form-control" id="cvv" name="cvv" required>
+			</div>
+			<input type="hidden" name="servicioId" th:value="${servicio.id}">
+			<input type="hidden" name="usuarioIdSeleccionado"
+				th:value="${usuarioIdSeleccionado}"> <input type="hidden"
+				name="usuarioLogeadoId" th:value="${usuarioLogeadoId}"> <input
+				type="hidden" name="horario" th:value="${horario}">
+			<button type="submit" class="btn btn-primary">Realizar Pago</button>
+		</form>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

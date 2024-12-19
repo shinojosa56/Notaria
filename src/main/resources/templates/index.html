@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Notaria</a>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#">Control
+						de estudiantes</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-8 col-sm-10">
+				<div class="card">
+					<div class="card-header text-center">
+						<h1>Iniciar Sesión</h1>
+					</div>
+					<div class="card-body">
+						<form th:action="@{/usuario/validarAcceso}" method="POST">
+							<div class="form-group">
+								<label>Correo:</label> <input type="text" name="usuario"
+									class="form-control" placeholder="ejemplo: jose@hotmail.com"
+									required>
+							</div>
+							<div class="form-group">
+								<label>Contraseña:</label> <input type="password"
+									name="contraseña" class="form-control"
+									placeholder="digite su contraseña" required>
+							</div>
+							<div class="box-footer text-center">
+								<button type="submit" class="btn btn-success">Iniciar
+									Sesión</button>
+							</div>
+						</form>
+						<div th:if="${error}" class="alert alert-danger mt-3">
+							<p th:text="${error}"></p>
+						</div>
+					</div>
+					<div class="card-footer text-center">
+						<a th:href="@{/home/crearUsuario}" class="btn btn-link">Registrarse</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

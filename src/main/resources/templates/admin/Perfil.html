@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Perfil del Usuario</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container mt-5">
+		<h1 class="text-center">Perfil del Usuario</h1>
+		<div th:if="${usuario != null}" class="card mt-4">
+			<div class="card-body">
+				<input type="hidden" th:field="${usuario.id}" name="id">
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							<label class="font-weight-bold">Nombre:</label> <span
+								th:text="${usuario.nombre}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Apellido:</label> <span
+								th:text="${usuario.apellido}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">DNI:</label> <span
+								th:text="${usuario.dni}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Dirección:</label> <span
+								th:text="${usuario.direccion}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Teléfono:</label> <span
+								th:text="${usuario.telefono}"></span>
+						</p>
+					</div>
+					<div class="col-md-6">
+						<p>
+							<label class="font-weight-bold">Rol:</label> <span
+								th:text="${usuario.rol}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Estado:</label> <span
+								th:text="${usuario.estado}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Tipo de Jornada:</label> <span
+								th:text="${usuario.tipoJornada}"></span>
+						</p>
+						<p>
+							<label class="font-weight-bold">Usuario:</label> <span
+								th:text="${usuario.usuario}"></span>
+						</p>
+
+					</div>
+				</div>
+				<a th:href="@{/cliente/editarCliente/{id} (id=${usuario.id})}"
+					class="btn btn-primary">Editar</a><br>
+				<br>
+				<form th:action="@{/admin/volver}" method="get">
+					<input type="hidden" name="usuarioId" th:value="${usuario.id}">
+					<button type="submit" class="btn btn-secondary">Volver</button>
+				</form>
+			</div>
+		</div>
+		<div th:if="${usuario == null}" class="alert alert-danger mt-4">
+			<p>Usuario no encontrado.</p>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
